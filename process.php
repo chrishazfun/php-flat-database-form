@@ -1,10 +1,9 @@
 <?php
-	$myFile = "data.json";
-	$arr_data = array(); // create empty array
+	$myFile = "items.json";
+	$arr_data = array();
 	try {
 		// Get form data
 		$formdata = array(
-			'url' => $_POST['url'],
 			'caption' => $_POST['caption']
 		);
 		// Get data from existing json file
@@ -18,7 +17,7 @@
 		// write json data into data.json file
 		if (file_put_contents($myFile, $jsondata)) {
 			echo 'success';
-	    }
+		}
 		else {
 			echo "error";
 		}
