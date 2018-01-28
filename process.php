@@ -1,23 +1,22 @@
 <?php
-	$myFile = "items.json";
-	$arr_data = array();
+	$file = "items.json";
+	$arr = array();
 	try {
 		// Get form data
-		$formdata = array(
-			'caption' => $_POST['caption']
-		);
+		$form = array( 'caption' => $_POST['caption'] );
 		// Get data from existing json file
-		$jsondata = file_get_contents($myFile);
+		$json = file_get_contents($file);
 		// converts json data into array
-		$arr_data = json_decode($jsondata, true);
+		$arr = json_decode($json, true);
 		// Push user data to array
-		array_push($arr_data,$formdata);
-		// Convert updated array to JSON
-		$jsondata = json_encode($arr_data, JSON_PRETTY_PRINT);
-		// write json data into data.json file
-		if (file_put_contents($myFile, $jsondata)) {
-			echo 'success';
+		array_push($arr, $form);
+		// Convert updated array back into JSON
+		$json = json_encode($arr, JSON_PRETTY_PRINT);
+		// write json data into items.json file
+		if (file_put_contents($file, $json)) {
+			header('Location: https://example.com/possible-path/items.json');
 		}
+		// return text indicating any possible errors in the submission
 		else {
 			echo "error";
 		}
